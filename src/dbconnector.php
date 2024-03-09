@@ -1,19 +1,18 @@
 
 <?php
-// Variabeln deklarieren
 $host = 'localhost'; // host
-$dbuser = '151_data_user'; // username
-$password = 'bbzbl12345'; // password
-$database = '151_data'; // database
+$dbuser = 'taskmaster_dbuser'; // username
+$password = 'tm_admin'; // password
+$database = 'taskmaster_db_prod'; // database
 
 
 
-// mit der Datenbank verbinden
+// Connect to the database
 $mysqli = new mysqli($host, $dbuser, $password, $database);
 
 
 
-// Fehlermeldung, falls Verbindung fehl schlägt.
+// Check for errors
 if ($mysqli->connect_error) {
     die('Connect Error (' . $mysqli->connect_errno . ') '. $mysqli->connect_error);
 }
