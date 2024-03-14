@@ -3,6 +3,7 @@
 - [TaskMaster](#taskmaster)
   - [Installation](#installation)
   - [Usage](#usage)
+  - [Database setup](#database-setup)
 
 ## Installation
 
@@ -26,7 +27,46 @@ Clone the repository
 git clone https://github.com/leonden/M-306
 ```
 
-The database should then be placed in the mysql data folder.
+## Database setup
+
+In the XAMPP control panel, start the MySQL module via the shell.
+
+Login with the `root` user
+
+```bash
+mysql -u root
+```
+
+Create a new database
+
+```sql
+create database taskmaster_prod
+
+use taskmaster_prod;
+```
+
+Create the tables
+
+```sql
+CREATE TABLE `project` (
+  `project_id` int NOT NULL AUTO_INCREMENT,
+  `title` varchar(100) NOT NULL,
+  `description` text NOT NULL,
+  `start_date` date NOT NULL,
+  `end_date` date NOT NULL,
+  `project_lead` varchar(100) NOT NULL,
+  PRIMARY KEY (`project_id`)
+)
+
+CREATE TABLE `user` (
+  `user_id` int NOT NULL AUTO_INCREMENT,
+  `username` varchar(50) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
+  `password` varchar(1000) NOT NULL,
+  PRIMARY KEY (`user_id`)
+)
+```
 
 Die Datenbank sollte dann in den mysql data Ordner reingelegt werden.
 Datenbank in der XAMPP Shell erst erstellen(Nachher die \_backup Datei restoren und nicht die andere):
