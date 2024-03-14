@@ -3,7 +3,7 @@
 $host = 'localhost'; // host
 $dbuser = 'taskmaster_dbuser'; // username
 $password = 'tm_admin'; // password
-$database = 'taskmaster_db_prod'; // database
+$database = 'taskmaster_prod'; // database
 
 
 
