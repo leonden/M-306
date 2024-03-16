@@ -1,6 +1,6 @@
-CREATE DATABASE `taskmaster_prod`;
+CREATE DATABASE `taskmaster`;
 
-USE `taskmaster_prod`;
+USE `taskmaster`;
 
 CREATE TABLE `project` (
   `project_id` int NOT NULL AUTO_INCREMENT,
@@ -10,7 +10,7 @@ CREATE TABLE `project` (
   `end_date` date NOT NULL,
   `project_lead` varchar(100) NOT NULL,
   PRIMARY KEY (`project_id`)
-)
+);
 
 CREATE TABLE `user` (
   `user_id` int NOT NULL AUTO_INCREMENT,
@@ -19,7 +19,7 @@ CREATE TABLE `user` (
   `lastname` varchar(100) NOT NULL,
   `password` varchar(1000) NOT NULL,
   PRIMARY KEY (`user_id`)
-)
+);
 
 insert into `user` (`username`, `firstname`, `lastname`, `password`) values ('admin', 'admin', 'admin', 'admin');
 insert into `user` (`username`, `firstname`, `lastname`, `password`) values ('test', 'test', 'test', 'test');

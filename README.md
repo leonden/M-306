@@ -40,9 +40,9 @@ mysql -u root
 Create a new database
 
 ```sql
-create database taskmaster_prod
+create database taskmaster
 
-use taskmaster_prod;
+use taskmaster;
 ```
 
 Create the tables
