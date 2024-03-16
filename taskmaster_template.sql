@@ -23,3 +23,5 @@ CREATE TABLE `user` (
 
 insert into `user` (`username`, `firstname`, `lastname`, `password`) values ('admin', 'admin', 'admin', 'admin');
 insert into `user` (`username`, `firstname`, `lastname`, `password`) values ('test', 'test', 'test', 'test');
+
+insert into `project` (`title`, `description`, `start_date`, `end_date`, `project_lead`) values ('Project 1', 'Project 1 description', '2020-01-01', '2020-12-31', 'admin');
