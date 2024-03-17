@@ -6,14 +6,14 @@ if (!isset($_SESSION['user_id'])) {
     exit();
 }
 
+// Database connection
+$conn = new mysqli("localhost", "root", "", "taskmaster");
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['project_id'])) {
     $project_id = $_GET['project_id'];
-
-    // Database connection
-    $conn = new mysqli("localhost", "root", "", "taskmaster");
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // Fetch project details
     $stmt = $conn->prepare("SELECT * FROM project WHERE project_id = ? AND project_lead = ?");
@@ -38,12 +38,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_project"])) {
     $start_date = $_POST['start_date'];
     $end_date = $_POST['end_date'];
 
-    // Database connection (This should be before the update logic)
-    $conn = new mysqli("localhost", "root", "", "taskmaster");
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
-
     // Update project
     $stmt = $conn->prepare("UPDATE project SET title=?, description=?, start_date=?, end_date=? WHERE project_id=?");
     $stmt->bind_param("ssssi", $title, $description, $start_date, $end_date, $project_id);
@@ -52,11 +46,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["edit_project"])) {
         header("Location: dashboard.php");
         exit();
     } else {
-        echo "Error updating project: " . $conn->error;
+        echo "Error updating project: " . $stmt->error;
     }
     $stmt->close();
 }
-
 ?>
 
 <!DOCTYPE html>

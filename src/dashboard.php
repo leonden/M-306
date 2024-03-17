@@ -61,6 +61,10 @@ $projects = getAllProjects($conn);
         th {
             background-color: #f2f2f2;
         }
+        .delete-project {
+            width: 20px;
+            height: 20px;
+        }
     </style>
 </head>
 <body>
@@ -93,7 +97,7 @@ $projects = getAllProjects($conn);
                         echo "<a href=\"edit_project.php?project_id={$project['project_id']}\">Edit</a> | ";
                         echo "<form method=\"post\" action=\"" . htmlspecialchars($_SERVER["PHP_SELF"]) . "\" style=\"display:inline;\">";
                         echo "<input type=\"hidden\" name=\"project_id\" value=\"{$project['project_id']}\">";
-                        echo "<input type=\"submit\" name=\"delete_project\" value=\"Delete\" onclick=\"return confirm('Are you sure you want to delete this project?');\">";
+                        echo "<input type=\"image\" class=\"delete-project\"  src=\"./assets/bin.svg\" name=\"delete_project\" alt=\"Delete\" onclick=\"return confirm('Are you sure you want to delete this project?');\">";
                         echo "</form>";
                     }
                     ?>
@@ -102,8 +106,7 @@ $projects = getAllProjects($conn);
             <?php } ?>
         </tbody>
     </table>
-    <a href="./account/logout.php">Logout</a>
+    <p><a href="./account/change_password.php">Edit Account</a></p>
+   <p><a href="./account/logout.php">Logout</a></p>
 </body>
 </html>
-
-
