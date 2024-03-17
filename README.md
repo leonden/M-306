@@ -57,7 +57,7 @@ mysql -u root
 Create a new database
 
 ```sql
-create database taskmaster
+create database taskmaster;
 
 use taskmaster;
 ```
