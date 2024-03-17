@@ -23,6 +23,8 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         $row = $result->fetch_assoc();
         if(password_verify($password, $row['password'])) {
             $_SESSION['user_id'] = $row['user_id'];
+            $_SESSION['firstname'] = $row['firstname'];
+            $_SESSION['lastname'] = $row['lastname'];
             header("Location: ../dashboard.php");
             exit();
         } else {

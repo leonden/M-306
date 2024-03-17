@@ -22,7 +22,9 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssss", $username, $firstname, $lastname, $hashed_password);
     if($stmt->execute()) {
         $_SESSION['user_id'] = $stmt->insert_id;
-        header("Location: dashboard.php");
+        $_SESSION['firstname'] = $firstname;
+        $_SESSION['lastname'] = $lastname;
+        header("Location: ../dashboard.php");
         exit();
     } else {
         $error = "Error: " . $conn->error;

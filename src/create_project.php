@@ -13,16 +13,25 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_project"])) {
         die("Connection failed: " . $conn->connect_error);
     }
 
+    // Fetch firstname and lastname associated with user_id
+    $stmt_name = $conn->prepare("SELECT firstname, lastname FROM user WHERE user_id = ?");
+    $stmt_name->bind_param("i", $_SESSION['user_id']);
+    $stmt_name->execute();
+    $result_name = $stmt_name->get_result();
+    $row_name = $result_name->fetch_assoc();
+    $project_lead = $row_name['firstname'] . " " . $row_name['lastname']; // Concatenate firstname and lastname
+
+    // Close statement
+    $stmt_name->close();
+
     $title = $_POST['title'];
     $description = $_POST['description'];
     $start_date = $_POST['start_date'];
     $end_date = $_POST['end_date'];
-    
-    $project_lead = $_SESSION['user_id'];
 
     // Insert new project into the database
     $stmt = $conn->prepare("INSERT INTO project (title, description, start_date, end_date, project_lead) VALUES (?, ?, ?, ?, ?)");
-    $stmt->bind_param("ssssi", $title, $description, $start_date, $end_date, $project_lead);
+    $stmt->bind_param("sssss", $title, $description, $start_date, $end_date, $project_lead);
     $stmt->execute();
     $stmt->close();
     $conn->close();
