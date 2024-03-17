@@ -27,6 +27,23 @@ Clone the repository
 git clone https://github.com/leonden/M-306
 ```
 
+Now take the entire content of the `src` directory and move it to the root of the `htdocs` directory.
+
+The directory structure should look like this:
+
+```plaintext
+htdocs
+│__ index.php
+|__ dashboard.php
+|__ create_project.php
+|__ edit_project.php
+|__ account
+|__|__ login.php
+|__|__ register.php
+|__|__ logout.php
+|__|__ login_register.php
+```
+
 ## Database setup
 
 In the XAMPP control panel, start the MySQL module via the shell.
