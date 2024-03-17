@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Erstellungszeit: 16. Mrz 2024 um 16:38
+-- Erstellungszeit: 17. Mrz 2024 um 17:45
 -- Server-Version: 10.4.32-MariaDB
 -- PHP-Version: 8.2.12
 
@@ -37,35 +37,6 @@ CREATE TABLE `project` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Daten für Tabelle `project`
---
-
-INSERT INTO `project` (`project_id`, `title`, `description`, `start_date`, `end_date`, `project_lead`) VALUES
-(1, 'Project 1', 'Project 1 description', '2020-01-01', '2020-12-31', 'admin');
-
--- --------------------------------------------------------
-
---
--- Tabellenstruktur für Tabelle `user`
---
-
-CREATE TABLE `user` (
-  `user_id` int(11) NOT NULL,
-  `username` varchar(50) NOT NULL,
-  `firstname` varchar(100) NOT NULL,
-  `lastname` varchar(100) NOT NULL,
-  `password` varchar(1000) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Daten für Tabelle `user`
---
-
-INSERT INTO `user` (`user_id`, `username`, `firstname`, `lastname`, `password`) VALUES
-(1, 'admin', 'admin', 'admin', 'admin'),
-(2, 'test', 'test', 'test', 'test');
-
---
 -- Indizes der exportierten Tabellen
 --
 
@@ -76,12 +47,6 @@ ALTER TABLE `project`
   ADD PRIMARY KEY (`project_id`);
 
 --
--- Indizes für die Tabelle `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`user_id`);
-
---
 -- AUTO_INCREMENT für exportierte Tabellen
 --
 
@@ -89,13 +54,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT für Tabelle `project`
 --
 ALTER TABLE `project`
-  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT für Tabelle `user`
---
-ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `project_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
