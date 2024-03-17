@@ -73,7 +73,7 @@ CREATE TABLE `project` (
   `end_date` date NOT NULL,
   `project_lead` varchar(100) NOT NULL,
   PRIMARY KEY (`project_id`)
-)
+);
 
 CREATE TABLE `user` (
   `user_id` int NOT NULL AUTO_INCREMENT,
@@ -82,7 +82,7 @@ CREATE TABLE `user` (
   `lastname` varchar(100) NOT NULL,
   `password` varchar(1000) NOT NULL,
   PRIMARY KEY (`user_id`)
-)
+);
 ```
 
 Die Datenbank sollte dann in den mysql data Ordner reingelegt werden.
