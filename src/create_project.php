@@ -48,16 +48,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_project"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create New Project</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h2>Create New Project</h2>
-    <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
-        <input type="text" name="title" placeholder="Title" required><br>
-        <textarea name="description" placeholder="Description" required></textarea><br>
-        Start Date: <input type="date" name="start_date" required><br>
-        End Date: <input type="date" name="end_date" required><br>
-        <input type="submit" name="create_project" value="Create Project">
-    </form>
-    <p><a href="dashboard.php">Back to Dashboard</a></p>
+    <div class="container">
+        <h2>Create New Project</h2>
+        <form method="post" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>">
+            <div class="form-group">
+                <input type="text" class="form-control" name="title" placeholder="Title" required>
+            </div>
+            <div class="form-group">
+                <textarea class="form-control" name="description" placeholder="Description" required></textarea>
+            </div>
+            <div class="form-group">
+                <label for="start_date">Start Date:</label>
+                <input type="date" class="form-control" id="start_date" name="start_date" required>
+            </div>
+            <div class="form-group">
+                <label for="end_date">End Date:</label>
+                <input type="date" class="form-control" id="end_date" name="end_date" required>
+            </div>
+            <button type="submit" class="btn btn-primary" name="create_project">Create Project</button>
+        </form>
+        <p><a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a></p>
+    </div>
 </body>
 </html>

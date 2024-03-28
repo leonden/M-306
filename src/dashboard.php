@@ -49,64 +49,50 @@ $projects = getAllProjects($conn);
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard</title>
-    <style>
-        table {
-            border-collapse: collapse;
-        }
-        th, td {
-            border: 1px solid black;
-            padding: 8px;
-            text-align: left;
-        }
-        th {
-            background-color: #f2f2f2;
-        }
-        .delete-project {
-            width: 20px;
-            height: 20px;
-        }
-    </style>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 </head>
 <body>
-    <h2>Welcome to Your Dashboard</h2>
-    <h3>Create New Project</h3>
-    <p><a href="create_project.php"><button>Create a new project</button></a></p>
-    <h3>All Projects</h3>
-    <table>
-        <thead>
-            <tr>
-                <th>Title</th>
-                <th>Description</th>
-                <th>Start Date</th>
-                <th>End Date</th>
-                <th>Project Lead</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-            <?php foreach ($projects as $project) { ?>
+    <div class="container">
+        <h2>Welcome to Your Dashboard</h2>
+        <h3>Create New Project</h3>
+        <p><a href="create_project.php" class="btn btn-primary">Create a new project</a></p>
+        <h3>All Projects</h3>
+        <table class="table">
+            <thead class="thead-light">
                 <tr>
-                    <td><?php echo $project['title']; ?></td>
-                    <td><?php echo $project['description']; ?></td>
-                    <td><?php echo $project['start_date']; ?></td>
-                    <td><?php echo $project['end_date']; ?></td>
-                    <td><?php echo $project['project_lead']; ?></td>
-                    <td>
-                    <?php 
-                    if ($project['project_lead'] == $_SESSION['user_id']) {
-                        echo "<a href=\"edit_project.php?project_id={$project['project_id']}\">Edit</a> | ";
-                        echo "<form method=\"post\" action=\"" . htmlspecialchars($_SERVER["PHP_SELF"]) . "\" style=\"display:inline;\">";
-                        echo "<input type=\"hidden\" name=\"project_id\" value=\"{$project['project_id']}\">";
-                        echo "<input type=\"image\" class=\"delete-project\"  src=\"./assets/bin.svg\" name=\"delete_project\" alt=\"Delete\" onclick=\"return confirm('Are you sure you want to delete this project?');\">";
-                        echo "</form>";
-                    }
-                    ?>
-                </td>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Start Date</th>
+                    <th>End Date</th>
+                    <th>Project Lead</th>
+                    <th>Actions</th>
                 </tr>
-            <?php } ?>
-        </tbody>
-    </table>
-    <p><a href="./account/change_password.php">Edit Account</a></p>
-   <p><a href="./account/logout.php">Logout</a></p>
+            </thead>
+            <tbody>
+                <?php foreach ($projects as $project) { ?>
+                    <tr>
+                        <td><?php echo $project['title']; ?></td>
+                        <td><?php echo $project['description']; ?></td>
+                        <td><?php echo $project['start_date']; ?></td>
+                        <td><?php echo $project['end_date']; ?></td>
+                        <td><?php echo $project['project_lead']; ?></td>
+                        <td>
+                        <?php 
+                        if ($project['project_lead'] == $_SESSION['user_id']) {
+                            echo "<a href=\"edit_project.php?project_id={$project['project_id']}\" class=\"btn btn-primary btn-sm\">Edit</a> ";
+                            echo "<form method=\"post\" action=\"" . htmlspecialchars($_SERVER["PHP_SELF"]) . "\" style=\"display:inline;\">";
+                            echo "<input type=\"hidden\" name=\"project_id\" value=\"{$project['project_id']}\">";
+                            echo "<button type=\"submit\" class=\"btn btn-danger btn-sm\" name=\"delete_project\" onclick=\"return confirm('Are you sure you want to delete this project?');\">Delete</button>";
+                            echo "</form>";
+                        }
+                        ?>
+                    </td>
+                    </tr>
+                <?php } ?>
+            </tbody>
+        </table>
+        <p><a href="./account/change_password.php">Edit Account</a></p>
+        <p><a href="./account/logout.php">Logout</a></p>
+    </div>
 </body>
 </html>
