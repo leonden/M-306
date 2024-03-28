@@ -53,7 +53,16 @@ $projects = getAllProjects($conn);
 </head>
 <body>
     <div class="container">
-        <h2>Welcome to Your Dashboard</h2>
+        <header style="display: flex; justify-content: space-between; align-items: center;">
+            <h2>Welcome to Your Dashboard</h2>
+            <div class="container" style="width: fit-content; margin: 0; text-align: right;">
+                <p style="margin: 0;">Hello, <?php echo $_SESSION['firstname']; ?>!</p>
+                <div style="display: flex; font-size: 0.75rem">
+                    <p style="margin: 0;"><a href="./account/edit_account.php">Edit Account</a></p>
+                    <p style="margin-left: 0.5rem;"><a href="./account/logout.php">Logout</a></p>
+                </div>
+            </div>
+        </header>
         <h3>Create New Project</h3>
         <p><a href="create_project.php" class="btn btn-primary">Create a new project</a></p>
         <h3>All Projects</h3>
@@ -78,7 +87,7 @@ $projects = getAllProjects($conn);
                         <td><?php echo $project['project_lead']; ?></td>
                         <td>
                         <?php 
-                        if ($project['project_lead'] == $_SESSION['user_id']) {
+                           if ($project['project_lead'] == $_SESSION['firstname'] . " " . $_SESSION['lastname']) {
                             echo "<a href=\"edit_project.php?project_id={$project['project_id']}\" class=\"btn btn-primary btn-sm\">Edit</a> ";
                             echo "<form method=\"post\" action=\"" . htmlspecialchars($_SERVER["PHP_SELF"]) . "\" style=\"display:inline;\">";
                             echo "<input type=\"hidden\" name=\"project_id\" value=\"{$project['project_id']}\">";
@@ -91,8 +100,6 @@ $projects = getAllProjects($conn);
                 <?php } ?>
             </tbody>
         </table>
-        <p><a href="./account/change_password.php">Edit Account</a></p>
-        <p><a href="./account/logout.php">Logout</a></p>
     </div>
 </body>
 </html>

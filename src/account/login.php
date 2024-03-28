@@ -15,7 +15,7 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
         die("Connection failed: " . $conn->connect_error);
     }
 
-    $stmt = $conn->prepare("SELECT user_id, password FROM user WHERE username = ?");
+    $stmt = $conn->prepare("SELECT user_id, firstname, lastname, password FROM user WHERE username = ?");
     $stmt->bind_param("s", $username);
     $stmt->execute();
     $result = $stmt->get_result();
