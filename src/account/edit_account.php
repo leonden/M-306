@@ -83,7 +83,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_password"])) {
             </div>
             <button type="submit" class="btn btn-primary" name="update_password">Update Password</button>
         </form>
-        <p><a href="dashboard.php" class="btn btn-secondary">Back to Dashboard</a></p>
+        <p><a href="../dashboard.php" class="btn btn-secondary">Back to Dashboard</a></p>
     </div>
 </body>
 </html>
