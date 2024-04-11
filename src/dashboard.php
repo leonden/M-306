@@ -1,15 +1,11 @@
 <?php
 session_start();
 
+require_once 'db_connector.php';
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
-}
-
-// Database connection
-$conn = new mysqli("localhost", "root", "", "taskmaster");
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
 }
 
 // Function to retrieve all projects

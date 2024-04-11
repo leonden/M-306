@@ -1,17 +1,14 @@
 <?php
 session_start();
 
+require_once 'db_connector.php';
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["create_project"])) {
-    // Database connection
-    $conn = new mysqli("localhost", "root", "", "taskmaster");
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // Fetch firstname and lastname associated with user_id
     $stmt_name = $conn->prepare("SELECT firstname, lastname FROM user WHERE user_id = ?");

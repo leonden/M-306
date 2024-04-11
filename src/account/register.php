@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once 'db_connector.php';
+
 if(isset($_SESSION['user_id'])) {
     header("Location: dashboard.php");
     exit();
@@ -11,11 +13,6 @@ if($_SERVER["REQUEST_METHOD"] == "POST") {
     $firstname = $_POST['firstname'];
     $lastname = $_POST['lastname'];
     $password = $_POST['password'];
-
-    $conn = new mysqli("localhost", "root", "", "taskmaster");
-    if($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
     $stmt = $conn->prepare("INSERT INTO user (username, firstname, lastname, password) VALUES (?, ?, ?, ?)");

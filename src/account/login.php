@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once 'db_connector.php';
+
 if(isset($_SESSION['user_id'])) {
     header("Location: ../dashboard.php");
     exit();
@@ -9,11 +11,6 @@ if(isset($_SESSION['user_id'])) {
 if($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $_POST['username'];
     $password = $_POST['password'];
-
-    $conn = new mysqli("localhost", "root", "", "taskmaster");
-    if($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     $stmt = $conn->prepare("SELECT user_id, firstname, lastname, password FROM user WHERE username = ?");
     $stmt->bind_param("s", $username);

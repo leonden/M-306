@@ -1,6 +1,8 @@
 <?php
 session_start();
 
+require_once 'db_connector.php';
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
@@ -12,12 +14,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_password"])) {
     $current_password = $_POST['current_password'];
     $new_password = $_POST['new_password'];
     $confirm_password = $_POST['confirm_password'];
-
-    // Database connection
-    $conn = new mysqli("localhost", "root", "", "taskmaster");
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     // Fetch user's current password from the database
     $stmt = $conn->prepare("SELECT password FROM user WHERE user_id = ?");

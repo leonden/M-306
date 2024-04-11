@@ -1,17 +1,14 @@
 <?php
 session_start();
 
+require_once 'db_connector.php';
+
 if (!isset($_SESSION['user_id'])) {
     header("Location: login.php");
     exit();
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_project"])) {
-    // Database connection
-    $conn = new mysqli("localhost", "root", "", "taskmaster");
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     $project_id = $_POST['project_id'];
     $title = $_POST['title'];
@@ -34,12 +31,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["update_project"])) {
 // Fetch project details from the database
 if (isset($_GET['project_id'])) {
     $project_id = $_GET['project_id'];
-
-    // Database connection
-    $conn = new mysqli("localhost", "root", "", "taskmaster");
-    if ($conn->connect_error) {
-        die("Connection failed: " . $conn->connect_error);
-    }
 
     $stmt = $conn->prepare("SELECT * FROM project WHERE project_id = ?");
     $stmt->bind_param("i", $project_id);
